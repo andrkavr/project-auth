@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import userRoutes from "./routes/userRoutes";
 import "dotenv/config"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
@@ -17,7 +18,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  mongoose.connection.readyState === 1
+  ? next()
+  : res.status(503).json({ error: "Service Unavailable" });
+});
+app.use(userRoutes);
+
 // Start defining your routes here
+
 app.get("/", (req, res) => {
   res.send("Hello Technigo!");
 });

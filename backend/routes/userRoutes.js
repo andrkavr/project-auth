@@ -17,6 +17,7 @@ router.get("/hello", (req, res) => {
 router.post("/users", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    console.log(username, email, password);
     const user = new UserModel({
       email,
       username,

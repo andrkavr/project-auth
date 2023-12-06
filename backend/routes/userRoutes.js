@@ -11,10 +11,6 @@ router.get("/", (req, res) => {
   res.json({ endpoints });
 });
 
-router.get("/hello", (req, res) => {
-  res.json("Hello, this is working");
-});
-
 router.post("/users", async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -24,18 +20,16 @@ router.post("/users", async (req, res) => {
       // and throw new error with some info
       throw new Error("Please add all fields");
     }
-    console.log(username, email, password);
     const user = new UserModel({
       email,
       username,
       password: bcrypt.hashSync(password, 10),
     });
+
     await user.save();
     res.status(201).json({ id: user._id, accessToken: user.accessToken });
   } catch (err) {
     res.status(400).json({
-      user: UserModel.username,
-      email: UserModel.email,
       message: "Could not create user",
       errors: err.errors,
     });

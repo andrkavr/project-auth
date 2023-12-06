@@ -1,21 +1,18 @@
-import { Router, Route } from 'react-router-dom';
-import { RegistrationForm } from './components/RegistrationForm';
-import { SignInForm } from './components/SignInForm';
-import { AuthenticatedContent } from './components/AuthenticatedContent';
-
-
+import { Router, Route } from "react-router-dom";
+import { Registration } from "./components/Registration";
+import { SignIn } from "./components/SignIn";
+import { Authenticated } from "./components/Authenticated";
 
 export const App = () => {
   return (
-  <Router>
-    <div>
-    <Route path="/register" component={RegistrationForm} />
+    <Router>
+      <div>
+        <Route path="/register" component={Registration} />
 
-    <Route path="/signin" component={SignInForm} />
+        <Route path="/signin" component={SignIn} />
 
-    <Route path="/authenticated" />
-
-    </div>
+        <Route path="/authenticated" />
+      </div>
     </Router>
   );
 };

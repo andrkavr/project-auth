@@ -1,5 +1,3 @@
-export const AuthenticatedContent = () => {
-  return (
-    <div>AuthenticatedContent</div>
-  )
-}
+export const Authenticated = () => {
+  return <div>Authenticated Content</div>;
+};

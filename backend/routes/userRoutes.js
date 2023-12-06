@@ -30,7 +30,7 @@ router.post("/users", async (req, res) => {
       username,
       password: bcrypt.hashSync(password),
     });
-    UserModel.save();
+    user.save();
     res.status(201).json({ id: user._id, accessToken: user.accessToken });
   } catch (err) {
     res.status(400).json({

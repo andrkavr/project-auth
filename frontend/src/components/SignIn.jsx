@@ -1,18 +1,21 @@
-export const SignIn = () => {
-  return;
-  <div>
-    <h2>Sign In</h2>
-    <form>
-      <label>
-        Email:
-        <input type="email" />
-      </label>
-      <label>
-        Password:
-        <input type="password" />
-      </label>
+import './SignIn.css'; 
 
-      <button type="submit">Sign In</button>
-    </form>
-  </div>;
+export const SignIn = () => {
+  return (
+    <div className="signin-container">
+      <h2>Sign In</h2>
+      <form onSubmit={handleSubmit} className="signin-form">
+        <label htmlFor="email">
+          Email:
+          <input type="email" id="email" value={email} onChange={handleEmailChange} />
+        </label>
+        <label htmlFor="password">
+          Password:
+          <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+        </label>
+
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+  );
 };

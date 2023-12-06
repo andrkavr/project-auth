@@ -1,16 +1,18 @@
+import './Registration.css';
+
 export const Registration = () => {
   return (
-    <div>
+    <div className="registration-container">
       <h2>Registration</h2>
-      <form>
-        <label>
-          Email: <input type="email" required />
+      <form className="registration-form">
+        <label htmlFor="email">
+          Email: <input type="email" id="email" required />
         </label>
-        <label>
-          Username: <input type="text" required />
+        <label htmlFor="username">
+          Username: <input type="text" id="username" required />
         </label>
-        <label>
-          Password: <input type="password" required />
+        <label htmlFor="password">
+          Password: <input type="password" id="password" required />
         </label>
 
         <button type="submit">Register</button>

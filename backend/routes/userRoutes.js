@@ -11,7 +11,8 @@ router.get("/", (req, res) => {
   res.json({ endpoints });
 });
 
-router.post("/users", async (req, res) => {
+// Registration endpoint
+router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
   try {
     if (!username || !email || !password) {
@@ -36,7 +37,54 @@ router.post("/users", async (req, res) => {
   }
 });
 
-// Inte klart
-router.post("/authentication", async (req, res) => {});
+// Login endpoint
+router.post('/signin', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+      res.status(401).json({ message: 'Invalid email or password'})
+    }
+    res.status(200).json({ id: user.id, accessToken: user.accessToken})
+  } catch (err) {
+    res.status(400).json({
+      message: 'Could not log in',
+      errors: err.errors,
+    });
+  }
+});
+
+// Is only available for logged in users
+
+// router.post("/authenticated", async (req, res) => {
+//   const { email, password } = req.body;
+
+// Endpoint for userID/Token??
+
+// router.get('user/:userid', AuthenticateUser, async (req, res) => {
+//   const userId = req.params.userId;
+
+//   try {
+//     const user = await UserModel.findById(userId);
+    
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found'});
+//     }
+
+//     const { username, email} = user;
+//     res.status(200).json({ userId, username, email });
+//   } catch (err) {
+//     res.status(500).json({ message: 'Error retrieving user information', error: err.message})
+//   }
+// });
+
+
+
+
+
+
+  
+// });
 
 export default router;

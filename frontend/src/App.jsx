@@ -1,7 +1,7 @@
 import { Router, Route } from "react-router-dom";
 import { Registration } from "./components/Registration";
 import { SignIn } from "./components/SignIn";
-import { Authenticated } from "./components/Authenticated";
+import { AuthenticatedContent } from "./components/AuthenticatedContent";
 
 export const App = () => {
   return (
@@ -11,7 +11,7 @@ export const App = () => {
 
         <Route path="/signin" component={SignIn} />
 
-        <Route path="/authenticated" />
+        <Route path="/authenticated" component={AuthenticatedContent}/>
       </div>
     </Router>
   );

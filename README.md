@@ -10,4 +10,13 @@ Describe how you approached to problem, and what tools and techniques you used t
 
 ## View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+Backend deploy:
+https://auth-api-olz1.onrender.com/
+
+Test username:
+
+{
+"username": "ElectricPapi",
+"email": "fantastico@me.com",
+"password": "lala123"
+}

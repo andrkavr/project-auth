@@ -1,6 +1,7 @@
 import express from "express";
 import listEndpoints from "express-list-endpoints";
 import { UserModel } from "../models/User";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 
@@ -15,8 +16,14 @@ router.get("/hello", (req, res) => {
 });
 
 router.post("/users", async (req, res) => {
+  const { username, email, password } = req.body;
   try {
-    const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+      // if so, set http status to a 400code
+      res.status(400);
+      // and throw new error with some info
+      throw new Error("Please add all fields");
+    }
     console.log(username, email, password);
     const user = new UserModel({
       email,
@@ -27,6 +34,8 @@ router.post("/users", async (req, res) => {
     res.status(201).json({ id: user._id, accessToken: user.accessToken });
   } catch (err) {
     res.status(400).json({
+      user: UserModel.username,
+      email: UserModel.email,
       message: "Could not create user",
       errors: err.errors,
     });

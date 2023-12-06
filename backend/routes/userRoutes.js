@@ -28,9 +28,9 @@ router.post("/users", async (req, res) => {
     const user = new UserModel({
       email,
       username,
-      password: bcrypt.hashSync(password),
+      password: bcrypt.hashSync(password, 10),
     });
-    user.save();
+    await user.save();
     res.status(201).json({ id: user._id, accessToken: user.accessToken });
   } catch (err) {
     res.status(400).json({

@@ -21,6 +21,20 @@ router.post("/register", async (req, res) => {
       // and throw new error with some info
       throw new Error("Please add all fields");
     }
+
+    // Check if the current user trying to register is using an username or email that matches with the same username or email in the database, so they would have to choose something different
+    const existingUser = await UserModel.findOne({
+      $or: [{ username }, { email }],
+    });
+    if (existingUser) {
+      res.status(400);
+      throw new Error(
+        `User with ${
+          existingUser.username === username ? "username" : "email"
+        } already exists`
+      );
+    }
+
     const user = new UserModel({
       email,
       username,
@@ -38,19 +52,31 @@ router.post("/register", async (req, res) => {
 });
 
 // Login endpoint
-router.post('/signin', async (req, res) => {
+router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await UserModel.findOne({ email });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
-      res.status(401).json({ message: 'Invalid email or password'})
+      res
+        .status(401)
+        .json({ success: false, response: "Invalid email or password" });
     }
-    res.status(200).json({ id: user.id, accessToken: user.accessToken})
+    res.status(200).json({
+      success: true,
+      response: {
+        email: user.email,
+        id: user._id,
+        accessToken: user.accessToken,
+      },
+    });
   } catch (err) {
     res.status(400).json({
-      message: 'Could not log in',
-      errors: err.errors,
+      success: false,
+      response: {
+        message: "Could not log in",
+        errors: err.errors,
+      },
     });
   }
 });
@@ -67,7 +93,7 @@ router.post('/signin', async (req, res) => {
 
 //   try {
 //     const user = await UserModel.findById(userId);
-    
+
 //     if (!user) {
 //       return res.status(404).json({ message: 'User not found'});
 //     }
@@ -79,12 +105,6 @@ router.post('/signin', async (req, res) => {
 //   }
 // });
 
-
-
-
-
-
-  
 // });
 
 export default router;

@@ -1,9 +1,9 @@
-import './Registration.css';
+import "./Registration.css";
 
 export const Registration = () => {
   return (
     <div className="registration-container">
-      <h2>Registration</h2>
+      <h2>Register</h2>
       <form className="registration-form">
         <label htmlFor="email">
           Email: <input type="email" id="email" required />

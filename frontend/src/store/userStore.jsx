@@ -1,5 +1,5 @@
 import { create } from "zustand";
-const apiEnv = import.meta.env.BACKEND_API || "http://localhost:8080";
+const apiEnv = import.meta.env.VITE_BACKEND_API;
 //Only works on localhost for the moment
 
 export const userStore = create((set, get) => ({

@@ -2,6 +2,7 @@ import express from "express";
 import listEndpoints from "express-list-endpoints";
 import { UserModel } from "../models/User";
 import bcrypt from "bcrypt";
+import { authenticateUser } from "../middleware/authenticateUser";
 
 const router = express.Router();
 
@@ -81,30 +82,32 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+// Endpoint for userID/Token??
+
+router.get("user/:userId", authenticateUser, async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const { username, email } = user;
+    res.status(200).json({ userId, username, email });
+  } catch (err) {
+    res.status(500).json({
+      message: "Error retrieving user information",
+      error: err.message,
+    });
+  }
+});
+
 // Is only available for logged in users
 
 // router.post("/authenticated", async (req, res) => {
 //   const { email, password } = req.body;
-
-// Endpoint for userID/Token??
-
-// router.get('user/:userid', AuthenticateUser, async (req, res) => {
-//   const userId = req.params.userId;
-
-//   try {
-//     const user = await UserModel.findById(userId);
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found'});
-//     }
-
-//     const { username, email} = user;
-//     res.status(200).json({ userId, username, email });
-//   } catch (err) {
-//     res.status(500).json({ message: 'Error retrieving user information', error: err.message})
-//   }
-// });
-
 // });
 
 export default router;

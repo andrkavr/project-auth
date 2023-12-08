@@ -49,7 +49,7 @@ export const userStore = (set, get) => ({
       return;
     }
     try {
-      const response = await fetch(`${apiEnv}/login`, {
+      const response = await fetch(`${apiEnv}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

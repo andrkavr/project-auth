@@ -1,5 +1,7 @@
-import { create } from "zustand";
+import create from "zustand";
 const apiEnv = import.meta.env.BACKEND_API;
+console.log(apiEnv);
+const url = "http://localhost:8080";
 
 export const userStore = (set, get) => ({
   username: "",
@@ -13,7 +15,7 @@ export const userStore = (set, get) => ({
   isLoggedIn: false,
   setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
 
-  //USER REGISTRATION
+  // USER REGISTRATION
   handleSignup: async (email, username, password) => {
     if (!email || !username || !password) {
       alert("Please fill out all the fields to register an account.");
@@ -33,7 +35,7 @@ export const userStore = (set, get) => ({
         set({ username });
         alert("User registration successful!");
       } else {
-        //SERVER ERROR MESSAGE
+        // SERVER ERROR MESSAGE
         alert(data.response || "Registration failed");
       }
     } catch (error) {
@@ -42,14 +44,14 @@ export const userStore = (set, get) => ({
     }
   },
 
-  //LOGIN
+  // LOGIN
   handleLogin: async (email, password) => {
     if (!email || !password) {
       alert("Please enter both your email and password.");
       return;
     }
     try {
-      const response = await fetch(`${apiEnv}/signin`, {
+      const response = await fetch(`${url}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,12 +66,12 @@ export const userStore = (set, get) => ({
           accessToken: data.response.accessToken,
           isLoggedIn: true,
         });
-        //Update state with email and accessToken
-        //Redirect or update UI
+        // Update state with email and accessToken
+        // Redirect or update UI
         localStorage.setItem("accessToken", data.response.accessToken);
         alert("Login successful!");
       } else {
-        //SERVER ERROR MESSAGE
+        // SERVER ERROR MESSAGE
         alert(data.response || "Login failed");
       }
     } catch (error) {
@@ -78,8 +80,8 @@ export const userStore = (set, get) => ({
     }
   },
   handleLogout: () => {
-    //Clear userinfo and set isLoggedIn to false
-    set({ username: "", isLoggedIn: false });
+    // Clear userinfo and set isLoggedIn to false
+    set({ username: "", email: "", isLoggedIn: false });
     localStorage.removeItem("accessToken");
   },
 });

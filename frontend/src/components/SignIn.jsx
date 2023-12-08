@@ -9,6 +9,7 @@ export const SignIn = () => {
   const navigate = useNavigate();
 
   const storeHandleLogin = userStore((state) => state.handleLogin);
+  console.log(storeHandleLogin);
 
   const onLoginClick = async () => {
     if (!email || !password) {
@@ -16,7 +17,6 @@ export const SignIn = () => {
       return;
     }
     try {
-      console.log(storeHandleLogin);
       await storeHandleLogin(email, password);
       const isLoggedIn = userStore.getState().isLoggedIn;
       if (isLoggedIn) {
@@ -50,7 +50,7 @@ export const SignIn = () => {
           />
         </label>
 
-        <button onClick={onLoginClick} type="submit">
+        <button onClick={onLoginClick} type="button">
           Sign In
         </button>
       </form>

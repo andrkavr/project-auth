@@ -2,7 +2,7 @@ import { SignIn } from "../components/SignIn";
 import { Registration } from "../components/Registration";
 import { userStore } from "../store/userStore";
 import "./Home.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export const Home = () => {
@@ -32,16 +32,20 @@ export const Home = () => {
 
   return (
     <div className="container">
-      {isLoggedIn ? (
-        <>
-          <button>Sign In</button>
-          {/* <SignIn /> */}
-          <Registration />
-          <button onClick={clickLogout}>Sign out</button>
-        </>
-      ) : (
-        <></>
-      )}
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/SignIn">Sign In</Link>
+        {isLoggedIn ? (
+          <>
+            <button>Sign In</button>
+            {/* <SignIn /> */}
+            <Registration />
+            <button onClick={clickLogout}>Sign out</button>
+          </>
+        ) : (
+          <></>
+        )}
+      </nav>
     </div>
   );
 };

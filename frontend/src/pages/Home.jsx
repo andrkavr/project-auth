@@ -20,7 +20,7 @@ export const Home = () => {
   const clickLogout = () => {
     storeHandleLogout();
     alert("You have successfully been logged out.");
-    navigate("/");
+    navigate("/signin");
   };
 
   useEffect(() => {
@@ -32,20 +32,20 @@ export const Home = () => {
 
   return (
     <div className="container">
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/SignIn">Sign In</Link>
-        {isLoggedIn ? (
-          <>
+      {isLoggedIn ? (
+        <>
+          <Link to="/">Home</Link>
+          <Link to="/SignIn">Sign In</Link>
+          <nav>
             <button>Sign In</button>
             {/* <SignIn /> */}
             <Registration />
             <button onClick={clickLogout}>Sign out</button>
-          </>
-        ) : (
-          <></>
-        )}
-      </nav>
+          </nav>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

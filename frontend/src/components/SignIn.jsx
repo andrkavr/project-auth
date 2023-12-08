@@ -9,7 +9,6 @@ export const SignIn = () => {
   const navigate = useNavigate();
 
   const storeHandleLogin = userStore((state) => state.handleLogin);
-  console.log(storeHandleLogin);
 
   const onLoginClick = async () => {
     if (!email || !password) {

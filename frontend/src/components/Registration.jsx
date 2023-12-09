@@ -20,7 +20,7 @@ export const Registration = () => {
       return;
     }
     try {
-      await storeHandleSignup(username, password, email);
+      await storeHandleSignup(email, username, password);
       if (username && password) {
         navigate("/"); // Replace with your desired path
       }

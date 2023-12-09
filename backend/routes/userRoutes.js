@@ -104,6 +104,12 @@ router.get("user/:userId", authenticateUser, async (req, res) => {
   }
 });
 
+// router.get("/users", (req, res) => {
+//   try {
+//     const users =
+//   } catch (error) {}
+// });
+
 // Is only available for logged in users
 
 // router.post("/authenticated", async (req, res) => {

@@ -13,8 +13,11 @@ export const Registration = () => {
   // Function to handle the click event of the signup button
   const storeHandleSignup = userStore((state) => state.handleSignup);
 
+  const storeHandleLogin = userStore((state) => state.handleLogin);
+
   // Combined function for handling the signup click event
   const onSignupClick = async () => {
+    console.log(username, email, password);
     if (!username || !password || !email) {
       alert("Please enter email, username and password");
       return;
@@ -23,8 +26,15 @@ export const Registration = () => {
       console.log(email, username, password);
       await storeHandleSignup(email, username, password);
       if (email && password) {
-        // alert("Registration successful!");
-        navigate("/signin"); // Replace with your desired path
+        alert("Registration successful!");
+        //navigate("/signin"); // Replace with your desired path
+        await storeHandleLogin(email, password);
+        const isLoggedIn = userStore.getState().isLoggedIn;
+        if (isLoggedIn) {
+          console.log("You are now logged in.");
+          navigate("/");
+        }
+        console.log("user is logged in: " + isLoggedIn);
       }
     } catch (error) {
       // Handle any errors that occur during signup

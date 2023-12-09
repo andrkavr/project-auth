@@ -20,9 +20,11 @@ export const Registration = () => {
       return;
     }
     try {
+      console.log(email, username, password);
       await storeHandleSignup(email, username, password);
-      if (username && password) {
-        navigate("/"); // Replace with your desired path
+      if (email && password) {
+        // alert("Registration successful!");
+        navigate("/signin"); // Replace with your desired path
       }
     } catch (error) {
       // Handle any errors that occur during signup

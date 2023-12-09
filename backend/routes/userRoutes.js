@@ -104,11 +104,18 @@ router.get("user/:userId", authenticateUser, async (req, res) => {
   }
 });
 
-// router.get("/users", (req, res) => {
-//   try {
-//     const users =
-//   } catch (error) {}
-// });
+router.get("/users", async (req, res) => {
+  try {
+    await UserModel.find()
+      .sort({ createdAt: "desc" })
+      .exec()
+      .then((result) => {
+        res.json(result);
+      });
+  } catch (error) {
+    res.json(error);
+  }
+});
 
 // Is only available for logged in users
 

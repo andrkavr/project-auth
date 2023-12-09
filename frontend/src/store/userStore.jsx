@@ -14,7 +14,7 @@ export const userStore = create((set, get) => ({
   isLoggedIn: false, // Added to track if the user is logged in
   setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
   // FUNCTION TO REGISTER USERS
-  handleSignup: async (username, password, email) => {
+  handleSignup: async (email, username, password) => {
     if (!username || !password || !email) {
       alert("Please enter username, email and password");
       return;

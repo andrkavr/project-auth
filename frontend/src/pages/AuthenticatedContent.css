@@ -1,0 +1,9 @@
+.code-container {
+  font-family: monospace;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  line-height: normal;
+  /* overflow: auto; */
+  /* white-space: pre-wrap; */
+}

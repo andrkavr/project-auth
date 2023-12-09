@@ -1,5 +1,6 @@
 import { SignIn } from "../components/SignIn";
 import { Registration } from "../components/Registration";
+import { AuthenticatedContent } from "../pages/AuthenticatedContent";
 import { userStore } from "../store/userStore";
 import "./Home.css";
 import { useNavigate, Link } from "react-router-dom";
@@ -34,10 +35,11 @@ export const Home = () => {
     <div className="container">
       {isLoggedIn ? (
         <>
-          <Link to="/">Home</Link>
-          <Link to="/SignIn">Sign In</Link>
+          {/* <Link to="/">Home</Link> */}
+          {/* <Link to="/SignIn">Sign In</Link> */}
           <nav>
-            <button>Sign In</button>
+            {/* <button>Sign In</button> */}
+            <AuthenticatedContent />
             {/* <SignIn /> */}
             <Registration />
             <button onClick={clickLogout}>Sign out</button>

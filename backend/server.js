@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
-import "dotenv/config"
+import "dotenv/config";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -20,16 +20,16 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   mongoose.connection.readyState === 1
-  ? next()
-  : res.status(503).json({ error: "Service Unavailable" });
+    ? next()
+    : res.status(503).json({ error: "Service Unavailable" });
 });
 app.use(userRoutes);
 
 // Start defining your routes here
 
-app.get("/", (req, res) => {
-  res.send("Hello Technigo!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello Technigo!");
+// });
 
 // Start the server
 app.listen(port, () => {

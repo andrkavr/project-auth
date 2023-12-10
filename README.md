@@ -14,3 +14,6 @@ Connecting the dots. Errors in creating an authenticated account.
 
 Backend deploy:
 https://auth-api-olz1.onrender.com/
+
+Frontend deploy:
+https://authentic-api.netlify.app/

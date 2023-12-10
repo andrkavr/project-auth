@@ -5,15 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AuthenticatedContent = () => {
   const navigate = useNavigate();
-<<<<<<< HEAD
-
-  //Added to try out
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-  // const isLoggedIn = userStore.getState().isLoggedIn;
-=======
   const isLoggedIn = userStore.getState().isLoggedIn;
->>>>>>> 92a5785f2a5a890d1e0b581d5c33ca83f454a3e3
   useEffect(() => {
     if (!isLoggedIn) {
       alert("You don't have permission to see this without being logged in.");

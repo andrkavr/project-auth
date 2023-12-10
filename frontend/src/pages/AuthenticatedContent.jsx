@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const AuthenticatedContent = () => {
   const navigate = useNavigate();
 
-  // //Added to try out
+  //Added to try out
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   // const isLoggedIn = userStore.getState().isLoggedIn;

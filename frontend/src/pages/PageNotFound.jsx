@@ -1,5 +1,4 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./pagenotfound.css";
 
 export const PageNotFound = () => {
@@ -9,7 +8,7 @@ export const PageNotFound = () => {
   };
   return (
     <div className="not-found-container">
-      <h1>This page doesn't exist.</h1>
+      <h1>This page does not exist.</h1>
       <button onClick={goBack} className="go-back-button">
         Go to home
       </button>

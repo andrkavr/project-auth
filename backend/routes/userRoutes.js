@@ -82,28 +82,6 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-// Endpoint for userID/Token??
-
-router.get("user/:userId", authenticateUser, async (req, res) => {
-  const userId = req.params.userId;
-
-  try {
-    const user = await UserModel.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const { username, email } = user;
-    res.status(200).json({ userId, username, email });
-  } catch (err) {
-    res.status(500).json({
-      message: "Error retrieving user information",
-      error: err.message,
-    });
-  }
-});
-
 router.get("/users", async (req, res) => {
   try {
     await UserModel.find()
@@ -116,11 +94,5 @@ router.get("/users", async (req, res) => {
     res.json(error);
   }
 });
-
-// Is only available for logged in users
-
-// router.post("/authenticated", async (req, res) => {
-//   const { email, password } = req.body;
-// });
 
 export default router;

@@ -27,14 +27,12 @@ export const Registration = () => {
       await storeHandleSignup(email, username, password);
       if (email && password) {
         alert("Registration successful!");
-        // navigate("/");
-        //navigate("/signin"); // Replace with your desired path
-        await storeHandleLogin(email, password);
-        const isLoggedIn = userStore.getState().isLoggedIn;
-        if (isLoggedIn) {
-          console.log("You are now logged in.");
-          navigate("/authenticated");
-        }
+        // await storeHandleLogin(email, password);
+        // const isLoggedIn = userStore.getState().isLoggedIn;
+        // if (isLoggedIn) {
+        //   console.log("You are now logged in.");
+        //   navigate("/authenticated");
+        // }
       }
     } catch (error) {
       // Handle any errors that occur during signup

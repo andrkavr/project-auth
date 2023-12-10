@@ -19,7 +19,7 @@ export const SignIn = () => {
       await storeHandleLogin(email, password);
       const isLoggedIn = userStore.getState().isLoggedIn;
       if (isLoggedIn) {
-        navigate("/");
+        navigate("/authenticated");
       }
     } catch (error) {
       console.error("Login error: " + error);

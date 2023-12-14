@@ -60,7 +60,7 @@ export const userStore = create((set, get) => ({
         },
         body: JSON.stringify({ email, password }),
       });
-
+      console.log(response)
       const data = await response.json();
       if (data.success) {
         set({

@@ -14,9 +14,39 @@ export const userStore = create((set, get) => ({
   isLoggedIn: false, // Added to track if the user is logged in
   setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
   // FUNCTION TO REGISTER USERS
+  // handleSignup: async (email, username, password) => {
+  //   if (!username || !password || !email) {
+  //     alert("Please enter username, email and password");
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch(`${apiEnv}/register`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ email, username, password }),
+  //     });
+
+  //     const data = await response.json();
+  //     if (data.success) {
+  //       set({ username });
+  //       // Redirect or update UI
+  //       alert("Signup successful!");
+  //       console.log("Signing up with:", username);
+  //     } else {
+  //       // Display error message from server
+  //       alert(data.response || "Signup failed");
+  //     }
+  //   } catch (error) {
+  //     console.error("Signup error:", error);
+  //     alert("An error occurred during signup");
+  //   }
+  // },
   handleSignup: async (email, username, password) => {
     if (!username || !password || !email) {
-      alert("Please enter username, email and password");
+      alert("Please enter username, email, and password");
       return;
     }
 
@@ -30,7 +60,7 @@ export const userStore = create((set, get) => ({
       });
 
       const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         set({ username });
         // Redirect or update UI
         alert("Signup successful!");
@@ -60,7 +90,7 @@ export const userStore = create((set, get) => ({
         },
         body: JSON.stringify({ email, password }),
       });
-      console.log(response)
+      console.log(response);
       const data = await response.json();
       if (data.success) {
         set({

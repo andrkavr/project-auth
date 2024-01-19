@@ -4,7 +4,7 @@ Project Team:
 <a href="https://github.com/Isaackamran">Isaac</a>,
 <a href="https://github.com/andrkavr">Andrej</a>,
 <a href="https://github.com/majoh23">Manne</a>,
-This week we are diving deeper into backend and connecting it to a frontend page. Using different components in the backend as well as the frontend. A team project where we are using our strenghts to achieve a fully functioned authentication project. You could say this project is a summary of what we have learnt at the bootcamp so far.
+This week we are diving deeper into backend and connecting it to a frontend page. Using different components in the backend as well as the frontend. A team project where we are using our strenghts to achieve a fully functioned authentication project. You could say this project is a summary of what we have learnt at the bootcamp so far. Users can register accounts and will be shown information only available to authenticated users once they are logged in. 
 
 ## The problem
 
